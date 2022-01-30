@@ -17,6 +17,7 @@ find_package(wxWidgets COMPONENTS aui adv html xml net richtext core base REQUIR
  
 # wxWidgets include (this will do all the magic to configure everything)
 include( "${wxWidgets_USE_FILE}" )
+include_directories("/usr/include/hidapi")
 
 # Add source files
 set(headset_gui_src app.cpp app.h mainC.cpp mainC.h )

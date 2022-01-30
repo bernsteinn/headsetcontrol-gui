@@ -1,2 +1,3 @@
 #Build (unnecessary)
 build/
+.vscode/
