@@ -107,7 +107,7 @@ std::string exec(const char* cmd) {
     return result;
 }
 void MainC::getBatteryStatus(wxCommandEvent& event){
-        char command[300];
+    char command[300];
     sprintf(command, "%s", "/home/b3rnie/path2/projects/headsetcontrol-gui/src/HeadsetControl/bui/headsetcontrol -b");
     int ret = system(command);
     if (WEXITSTATUS(ret) == 1){
@@ -160,4 +160,40 @@ void MainC::OnExit(wxCommandEvent& event)
 {
  Destroy();
 }
+
+void MainC::startup(){
+    char command[300];
+    sprintf(command, "%s", "/home/b3rnie/path2/projects/headsetcontrol-gui/src/HeadsetControl/bui/headsetcontrol -b");
+    int ret = system(command);
+    if (WEXITSTATUS(ret) == 1){
+        status->Freeze();
+        if(status->GetCount() == 0){
+            status->Append("Error connecting to headset!");
+        }
+        else{
+            status->SetString(status->GetCount()-1, "Error connecting to headset!");
+        }
+        status->SetSelection(status->GetCount()-1);
+        status->Thaw();
+    }
+    else{
+        status->Freeze();
+        if(status->GetCount() == 0){
+            status->Append("Succesfully connected!");
+            std::string label = exec("../src/HeadsetControl/bui/headsetcontrol -b");
+            batStatus->SetLabel(label+"%");
+        }
+        else{
+            std::string label = exec("../src/HeadsetControl/bui/headsetcontrol -b");
+            status->SetString(status->GetCount()-1, "Succesfully connected!");
+            batStatus->SetLabel(label+"%");
+        }
+        status->SetSelection(status->GetCount()-1);
+        status->Thaw();
+
+    }
+    //event.Skip();
+
+}
+
 

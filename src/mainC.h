@@ -35,6 +35,7 @@ class MainC : public wxFrame{
         void getBatteryStatus(wxCommandEvent& event);//Define the get battery function
         void OnClose(wxCloseEvent& event);
         void OnExit(wxCommandEvent& event);
+        void startup();
 
         DECLARE_EVENT_TABLE();
         
