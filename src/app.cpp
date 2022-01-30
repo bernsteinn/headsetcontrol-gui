@@ -24,5 +24,14 @@ bool headset_gui::OnInit(){
     m_frame1->Show();//Show the frame
     return true;
 }
+void headset_gui::OnClose(wxCloseEvent& event)
+{
+ m_frame1->Close();
+}
+
+void headset_gui::OnExit(wxCommandEvent& event)
+{
+ m_frame1->Close();
+}
 
 
